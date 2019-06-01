@@ -1,0 +1,4 @@
+hadoop fs -rm -r -f /user/cloudera/recommender/output* && 
+javac -cp /usr/lib/hadoop/*:/usr/lib/hadoop-mapreduce/*:./json-simple-1.1.1.jar -d ../bin/recommender/ ../src/recommender/*.java -Xlint &&
+jar -cvf recommender.jar -C ../bin/recommender/ . &&
+hadoop jar recommender.jar recommender.Tester /user/cloudera/input/job_skills_100.json /user/cloudera/output;
