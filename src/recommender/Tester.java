@@ -51,7 +51,7 @@ public class Tester extends Configured implements Tool {
 	    while (reader.next(key, value)) {
 	    	cachedJobSkillData += (cachedJobSkillData.isEmpty() ? "" : ",") + key + "~" + value;
 	    }
-	    System.out.println(cachedJobSkillData);
+//	    System.out.println(cachedJobSkillData);
 	    reader.close();
     }
     fs.close();
