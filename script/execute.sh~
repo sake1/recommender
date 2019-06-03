@@ -1,4 +1,10 @@
 hadoop fs -rm -r -f /user/cloudera/recommender/output* && 
-javac -cp /usr/lib/hadoop/*:/usr/lib/hadoop-mapreduce/*:./json-simple-1.1.1.jar -d ../bin/recommender/ ../src/recommender/*.java -Xlint &&
+javac -cp /usr/lib/hadoop/*:/usr/lib/hadoop-mapreduce/* -d ../bin/recommender/ ../src/recommender/*.java -Xlint &&
+echo "Java class compilation success." &&
 jar -cvf recommender.jar -C ../bin/recommender/ . &&
-hadoop jar recommender.jar recommender.Tester /user/cloudera/input/job_skills_100.json /user/cloudera/output;
+echo "Begin Hadoop MapReduce Job..." &&
+time hadoop jar recommender.jar recommender.Tester \
+/user/cloudera/recommender/input/job_10000/ \
+/user/cloudera/recommender/input/user_10000/ \
+/user/cloudera/recommender/output \
+/user/cloudera/recommender/output2;

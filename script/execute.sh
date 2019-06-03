@@ -4,7 +4,7 @@ echo "Java class compilation success." &&
 jar -cvf recommender.jar -C ../bin/recommender/ . &&
 echo "Begin Hadoop MapReduce Job..." &&
 time hadoop jar recommender.jar recommender.Tester \
-/user/cloudera/recommender/input/job/ \
-/user/cloudera/recommender/input/user/ \
+/user/cloudera/recommender/input/job_100/ \
+/user/cloudera/recommender/input/user_100/ \
 /user/cloudera/recommender/output \
 /user/cloudera/recommender/output2;
