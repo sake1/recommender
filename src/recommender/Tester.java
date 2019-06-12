@@ -17,10 +17,10 @@ import org.apache.hadoop.io.Text;
 public class Tester extends Configured implements Tool {
 
   public static void main(String[] args) throws Exception {
-    int res = ToolRunner.run(new Tester(), args);
+    int res = ToolRunner.run(new Configuration(), new Tester(), args);
     System.exit(res);
   }
-  
+
 	@Override
 	public int run(String[] args) throws Exception {
 		Job job = Job.getInstance(getConf(), "jobExec");
@@ -36,7 +36,7 @@ public class Tester extends Configured implements Tool {
     if(!job.waitForCompletion(true)) {
     	return 1;
     }
-    
+
     FileSystem fs = FileSystem.get(new Configuration());
     FileStatus[] fss = fs.listStatus(new Path(args[2]));
     String cachedJobSkillData = "";
@@ -55,7 +55,7 @@ public class Tester extends Configured implements Tool {
 	    reader.close();
     }
     fs.close();
-    
+
     Job user = Job.getInstance(getConf(), "userExec");
     user.setJarByClass(this.getClass());
     FileInputFormat.addInputPath(user, new Path(args[1]));
