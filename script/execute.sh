@@ -5,6 +5,6 @@ jar -cvf recommender.jar -C ../bin/recommender/ . &&
 echo "Begin Hadoop MapReduce Job..." &&
 time yarn jar recommender.jar recommender.Tester -libjars ./json-simple-1.1.1.jar \
 /user/recommender/input/job_30000/ \
-/user/recommender/input/user_100000/ \
+/user/recommender/input/user_200000/ \
 /user/recommender/output \
 /user/recommender/output2;
